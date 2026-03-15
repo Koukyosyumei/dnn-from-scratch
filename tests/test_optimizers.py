@@ -29,19 +29,10 @@ def test_sgd_basic_step():
     np.testing.assert_allclose(layer.b, b - 0.1 * db)
 
 
-def test_sgd_lr_zero_no_update():
-    W = np.array([[1.0]])
-    b = np.array([0.0])
-    dW = np.array([[5.0]])
-    db = np.array([5.0])
-    layer = make_layer_with_grad(W, b, dW, db)
-
-    sgd = SGD(lr=0.0)  # technically invalid but tests boundary
-    # raises or no-ops depending on implementation — just test it doesn't crash badly
-    try:
-        sgd.step([layer])
-    except Exception:
-        pass  # ValueError is acceptable
+def test_sgd_lr_zero_raises():
+    # lr=0.0 is non-positive so the constructor should reject it
+    with pytest.raises(ValueError):
+        SGD(lr=0.0)
 
 
 def test_sgd_invalid_lr_raises():
