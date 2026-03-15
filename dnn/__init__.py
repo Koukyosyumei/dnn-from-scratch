@@ -2,7 +2,7 @@
 from .layers import Linear
 from .activations import ReLU, Sigmoid
 from .losses import MSELoss, BCELoss
-from .optimizers import SGD
+from .optimizers import SGD, Adam
 from .network import Sequential
 
-__all__ = ["Linear", "ReLU", "Sigmoid", "MSELoss", "BCELoss", "SGD", "Sequential"]
+__all__ = ["Linear", "ReLU", "Sigmoid", "MSELoss", "BCELoss", "SGD", "Adam", "Sequential"]
